@@ -1,0 +1,221 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>kboard</groupId>
+  <artifactId>kboard</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <inceptionYear>2013</inceptionYear>
+  <packaging>war</packaging>
+  <properties>
+    <scala.version>2.10.1</scala.version>
+    <org.springframework.version>3.2.3.RELEASE</org.springframework.version>
+  </properties>
+
+  <repositories>
+      <repository>
+          <id>scala-tools.org</id>
+          <name>Scala-Tools Maven2 Repository</name>
+          <url>https://oss.sonatype.org/content/groups/scala-tools</url>
+      </repository>
+      <repository>
+          <id>springsource-repo</id>
+          <name>SpringSource Repository</name>
+          <url>http://repo.springsource.org/release</url>
+      </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>scala-tools.org</id>
+      <name>Scala-Tools Maven2 Repository</name>
+      <url>https://oss.sonatype.org/content/groups/scala-tools</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+    <build>
+        <testSourceDirectory>src/test</testSourceDirectory>
+        <sourceDirectory>src/main</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/**.*</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>2.7</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includes>
+                        <include>%regex[.*[Test|It|Unit].class]</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <version>2.14.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scalaVersion>${scala.version}</scalaVersion>
+                    <launchers>
+                        <launcher>
+                            <id>run-scalatest</id>
+                            <mainClass>org.scalatest.tools.Runner</mainClass>
+                            <args>
+                                <arg>-p</arg>
+                                <arg>${project.build.testOutputDirectory}</arg>
+                            </args>
+                            <jvmArgs>
+                                <jvmArg>-Xmx512m</jvmArg>
+                            </jvmArgs>
+                        </launcher>
+                    </launchers>
+                    <jvmArgs>
+                        <jvmArg>-Xms64m</jvmArg>
+                        <jvmArg>-Xmx1024m</jvmArg>
+                    </jvmArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+  <dependencies>
+      <dependency>
+          <groupId>org.scala-lang</groupId>
+          <artifactId>scala-library</artifactId>
+          <version>${scala.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.scalatest</groupId>
+          <artifactId>scalatest_2.10</artifactId>
+          <version>1.9.1</version>
+          <scope>test</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+          <version>${org.springframework.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-webmvc</artifactId>
+          <version>${org.springframework.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-tx</artifactId>
+          <version>${org.springframework.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-orm</artifactId>
+          <version>${org.springframework.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>javax.validation</groupId>
+          <artifactId>validation-api</artifactId>
+          <version>1.1.0.Final</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-core-asl</artifactId>
+          <version>1.9.9</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-mapper-asl</artifactId>
+          <version>1.9.9</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.jayway.jsonpath</groupId>
+          <artifactId>json-path</artifactId>
+          <version>0.8.1</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-test</artifactId>
+          <version>${org.springframework.version}</version>
+          <scope>test</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>servlet-api</artifactId>
+          <version>2.5</version>
+          <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>org.glassfish.web</groupId>
+          <artifactId>el-impl</artifactId>
+          <version>2.2</version>
+          <scope>provided</scope>
+      </dependency>
+
+
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.11</version>
+          <scope>test</scope>
+      </dependency>
+
+
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-validator</artifactId>
+          <version>5.0.1.Final</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-mongodb</artifactId>
+          <version>1.2.1.RELEASE</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>1.7.5</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <version>1.7.5</version>
+      </dependency>
+
+  </dependencies>
+
+
+</project>
