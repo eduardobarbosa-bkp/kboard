@@ -20,7 +20,7 @@
         <constructor-arg ref="mongoURI" />
     </bean>
 
-    <mongo:db-factory id="mongoDbFactory" dbname="#{mongoURI.database}" username="#{mongoURI.username}" password="#{new java.lang.String(mongoURI.password)}" mongo-ref="mongo"/>
+    <mongo:db-factory id="mongoDbFactory" dbname="#{mongoURI.database}" mongo-ref="mongo"/>
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg ref="mongoDbFactory"/>
