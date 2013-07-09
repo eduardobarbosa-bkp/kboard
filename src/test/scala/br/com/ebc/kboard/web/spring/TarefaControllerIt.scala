@@ -58,7 +58,7 @@ class TarefaControllerIt extends IntegrationTestBase with ShouldMatchers with JS
 
          Given("uma tarefa sem os dados obrigatorios (nome)")
           val tarefa:Tarefa = new Tarefa
-          When("efetuar a requisicao via post ao metodo <url-base>/rest/tarefa/save")
+          When("efetuar a requisicao via post ao metodo <url-base>/tarefa/save")
          val content:String = this.mockMvc.perform(post("/tarefa/save", "json")
           .contentType(MediaType.APPLICATION_JSON)
           .content(jBean2Json(tarefa).getBytes))
@@ -75,7 +75,7 @@ class TarefaControllerIt extends IntegrationTestBase with ShouldMatchers with JS
       Given("uma tarefa com os dados obrigatorios (nome)")
         val tarefa:Tarefa = new Tarefa
         tarefa.setNome("TESTE")
-      When("efetuar a requisicao via post ao metodo <url-base>/rest/tarefa/save")
+      When("efetuar a requisicao via post ao metodo <url-base>/tarefa/save")
           val content:String = this.mockMvc.perform(post("/tarefa/save", "json")
             .contentType(MediaType.APPLICATION_JSON)
             .content(jBean2Json(tarefa).getBytes))
@@ -94,7 +94,7 @@ class TarefaControllerIt extends IntegrationTestBase with ShouldMatchers with JS
       Given("uma tarefa cadastrada")
         val tarefa:Tarefa = baseService.findById(classOf[Tarefa], ID_TAREFA_CADASTRADA).asInstanceOf[Tarefa]
         tarefa.setNome("ALTERACAO")
-        When("efetuar a requisicao via put ao metodo <url-base>/rest/tarefa/update")
+        When("efetuar a requisicao via put ao metodo <url-base>/tarefa/update")
         this.mockMvc.perform(put("/tarefa/update", "json")
           .contentType(MediaType.APPLICATION_JSON)
           .content(jBean2Json(tarefa).getBytes))
@@ -109,7 +109,7 @@ class TarefaControllerIt extends IntegrationTestBase with ShouldMatchers with JS
     Given("uma tarefa cadastrada")
       val tarefa:Tarefa = baseService.findById(classOf[Tarefa], ID_TAREFA_CADASTRADA).asInstanceOf[Tarefa]
       tarefa.setStatus(tarefa.DOING)
-      When("efetuar a requisicao via put ao metodo <url-base>/rest/tarefa/update")
+      When("efetuar a requisicao via put ao metodo <url-base>/tarefa/update")
       this.mockMvc.perform(put("/tarefa/update", "json")
         .contentType(MediaType.APPLICATION_JSON)
         .content(jBean2Json(tarefa).getBytes))
@@ -124,7 +124,7 @@ class TarefaControllerIt extends IntegrationTestBase with ShouldMatchers with JS
     Given("uma tarefa cadastrada")
     val tarefa:Tarefa = baseService.findById(classOf[Tarefa], ID_TAREFA_CADASTRADA).asInstanceOf[Tarefa]
     tarefa.setStatus("erro")
-    When("efetuar a requisicao via put ao metodo <url-base>/rest/tarefa/update")
+    When("efetuar a requisicao via put ao metodo <url-base>/tarefa/update")
     val content:String = this.mockMvc.perform(put("/tarefa/update", "json")
       .contentType(MediaType.APPLICATION_JSON)
       .content(jBean2Json(tarefa).getBytes))
@@ -139,7 +139,7 @@ class TarefaControllerIt extends IntegrationTestBase with ShouldMatchers with JS
   scenario("buscar uma tarefa") {
       Given("um identidicador de uma tarefa")
         val id = ID_TAREFA_CADASTRADA
-      When("efetuar a requisicao via get ao metodo <url-base>/rest/tarefa/find/{id}")
+      When("efetuar a requisicao via get ao metodo <url-base>/tarefa/find/{id}")
          val content = this.mockMvc.perform(get("/tarefa/find/"+id, "json")
           .contentType(MediaType.APPLICATION_JSON))
           .andExpect(status.isOk).andReturn().getResponse.getContentAsString
@@ -150,7 +150,7 @@ class TarefaControllerIt extends IntegrationTestBase with ShouldMatchers with JS
 
     scenario("listar tarefas") {
       Given("nenhum parametro")
-      When("efetuar a requisicao via get ao metodo <url-base>/rest/tarefa/list")
+      When("efetuar a requisicao via get ao metodo <url-base>/tarefa/list")
       val content = this.mockMvc.perform(get("/tarefa/list", "json")
         .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status.isOk).andReturn().getResponse.getContentAsString
@@ -162,7 +162,7 @@ class TarefaControllerIt extends IntegrationTestBase with ShouldMatchers with JS
     scenario("excluir uma tarefa") {
       Given("um identificador de uma tarefa")
         val id = ID_TAREFA_CADASTRADA
-      When("efetuar a requisicao via delete ao metodo <url-base>/rest/tarefa/delete/{id}")
+      When("efetuar a requisicao via delete ao metodo <url-base>/tarefa/delete/{id}")
       this.mockMvc.perform(delete("/tarefa/delete/"+id, "json")
         .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status.isOk)
