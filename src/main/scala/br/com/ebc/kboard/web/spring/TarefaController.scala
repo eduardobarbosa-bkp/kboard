@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod._
 import javax.validation.Valid
 import br.com.ebc.kboard.business.BaseService
 import br.com.ebc.kboard.web.spring.util.BaseController
-import org.springframework.http.HttpStatus
 
 
 @Controller
@@ -19,8 +18,7 @@ class TarefaController extends BaseController{
   @Autowired
   private val baseService: BaseService = null
 
-  @RequestMapping(value = Array("/save"), method = Array(POST), produces = Array("application/json"))
-  @ResponseStatus(HttpStatus.OK)
+  @RequestMapping(value = Array("/save"), method = Array(POST))
   @ResponseBody
   def save(@RequestBody @Valid task: Tarefa) = {
     baseService.save(task)
@@ -39,16 +37,14 @@ class TarefaController extends BaseController{
       baseService.delete(task.asInstanceOf[Tarefa])
   }
 
-  @RequestMapping(value = Array("/find/{id}"), method = Array(GET), produces = Array("application/json"))
-  @ResponseStatus(HttpStatus.OK)
+  @RequestMapping(value = Array("/find/{id}"), method = Array(GET))
   @ResponseBody
   def find(@PathVariable id: String) =  {
     baseService.findById(classOf[Tarefa], id)
   }
 
 
-  @RequestMapping(value = Array("/list"), method = Array(GET), produces = Array("application/json"))
-  @ResponseStatus(HttpStatus.OK)
+  @RequestMapping(value = Array("/list"), method = Array(GET))
   @ResponseBody
   def list() =  {
     baseService.findAll(classOf[Tarefa])
