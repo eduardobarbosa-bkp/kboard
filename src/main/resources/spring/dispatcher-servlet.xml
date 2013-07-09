@@ -17,6 +17,8 @@
     <context:component-scan
             base-package="br.com.ebc.kboard.web.spring"/>
 
+    <bean id="corsFilter" class="br.com.ebc.kboard.web.spring.filter.CorsFilter" />
+
     <mvc:annotation-driven />
 
 </beans>
