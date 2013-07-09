@@ -2,10 +2,8 @@ package br.com.ebc.kboard.web.spring.filter
 
 import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
-import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import java.io.IOException
 
 class CorsFilter extends OncePerRequestFilter {
   protected def doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
