@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="../../jquery.mobile-1.3.1/jquery.mobile-1.3.1.min.css" />
+    <link type="text/css" rel="stylesheet" href="tarefa.m.css" />
+
+    <script src="../../js/vendor/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="../../jquery.mobile-1.3.1/jquery.mobile-1.3.1.min.js" type="text/javascript"></script>
+    <script src="tarefa.m.js" type="text/javascript"></script>
+</head>
+<body>
+<!-- Start of first page: #one -->
+<div data-role="page" id="one" data-theme="b">
+    <div data-role="header" data-theme="b">
+        <h1>Kboard</h1>
+    </div><!-- /header -->
+    <div data-role="content" >
+           <div data-role="collapsible" data-theme="b" data-content-theme="c"  data-divider-theme="d" data-collapsed="false" data-mini="true" >
+                <h2>ToDo</h2>
+                <ul data-role="listview"  id="tarefaTodoList"  />
+            </div>
+            <div data-role="collapsible" data-theme="b" data-content-theme="c" data-divider-theme="d" data-collapsed="false" data-mini="true" >
+                <h2>Doing</h2>
+                <ul data-role="listview"  id="tarefaDoingList" />
+            </div>
+            <div data-role="collapsible" data-theme="b" data-content-theme="c" data-divider-theme="d" data-collapsed="false" data-mini="true">
+                <h2>Done</h2>
+                <ul data-role="listview"  id="tarefaDoneList" />
+        </div>
+    </div><!-- /content -->
+    <div data-role="footer" data-theme="b" class="ui-bar">
+        <a href="" id="btnNova" data-role="button" data-icon="plus" data-mini="true">Nova Tarefa</a>
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+<!-- Start of second page: #two -->
+<div data-role="page" id="two" data-theme="c">
+    <div data-role="header" data-theme="b">
+        <h1>Tarefa</h1>
+    </div><!-- /header -->
+    <div data-role="content" data-theme="c">
+        <div id="tarefaDetail">
+            <input type="hidden" id="tiTarefaId" data-mini="true" >
+            <label for="tiTarefaNome">Nome:</label>
+            <input type="text"  id="tiTarefaNome" data-clear-btn="true" maxlength="150" data-mini="true"/>
+            <fieldset data-role="controlgroup" data-type="horizontal">
+            <legend>Status:</legend>
+            <input type="radio" name="status" id="rdTarefaToDo" value="ToDo" data-mini="true" />
+            <label for="rdTarefaToDo">ToDo</label>
+            <input type="radio" name="status" id="rdTarefaDoing" value="Doing" data-mini="true" />
+            <label for="rdTarefaDoing">Doing</label>
+            <input type="radio" name="status" id="rdTarefaDone" value="Done" data-mini="true"/>
+            <label for="rdTarefaDone">Done</label>
+            </fieldset>
+        </div>
+    </div><!-- /content -->
+    <div data-role="footer" data-theme="b" class="ui-bar">
+        <a href="#one" id="btnVoltar" data-icon="back" data-mini="true" >Voltar</a>
+        <a href="" id="btnSalvar" data-icon="check" data-mini="true" >Salvar</a>
+        <a href="" id="btnExcluir" data-icon="check" data-mini="true" class="ui-btn-right" >Excluir</a>
+    </div><!-- /footer -->
+</div><!-- /page two -->
+</body>
+</html>
