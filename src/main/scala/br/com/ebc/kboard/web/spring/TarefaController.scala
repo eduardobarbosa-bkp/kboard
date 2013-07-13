@@ -26,12 +26,14 @@ class TarefaController extends BaseController{
   }
 
   @RequestMapping(value = Array("/update"), method = Array(PUT))
-  def update(@RequestBody @Valid task: Tarefa) {
+  @ResponseBody
+  def update(@RequestBody @Valid task: Tarefa) = {
     baseService.update(task)
   }
 
   @RequestMapping(value = Array("/delete/{id}"), method = Array(DELETE))
-  def delete(@PathVariable id: String) {
+  @ResponseBody
+  def delete(@PathVariable id: String) = {
     val task = baseService.findById(classOf[Tarefa], id)
     if(task != null)
       baseService.delete(task.asInstanceOf[Tarefa])
