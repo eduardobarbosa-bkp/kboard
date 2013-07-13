@@ -29,6 +29,7 @@ class TarefaController extends BaseController{
   @ResponseBody
   def update(@RequestBody @Valid task: Tarefa) = {
     baseService.update(task)
+    task
   }
 
   @RequestMapping(value = Array("/delete/{id}"), method = Array(DELETE))
