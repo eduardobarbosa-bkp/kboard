@@ -39,7 +39,6 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
-    <!--  Filter use to cross-domain ajax call - disabled
     <filter>
         <filter-name>corsFilter</filter-name>
         <filter-class>br.com.ebc.kboard.web.spring.filter.CorsFilter</filter-class>
@@ -49,5 +48,5 @@
         <filter-name>corsFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-       -->
+
 </web-app>
