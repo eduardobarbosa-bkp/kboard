@@ -6,7 +6,7 @@
         getTarefaById, displayTarefaList, displayTarefaDetail;
 
     // Base URI of RESTful web service
-    restfulWebServiceBaseUri = "http://kboard.herokuapp.com/";
+    restfulWebServiceBaseUri = "http://kboard.herokuapp.com/rest/";
 
     // URI maps to service.list
     tarefaListFindAllUri = restfulWebServiceBaseUri + "tarefa/list";
